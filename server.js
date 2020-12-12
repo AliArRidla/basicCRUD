@@ -15,12 +15,12 @@ app.get('/', (req, res) => {
     const articles = [{
         title : "judul pertama",
         body : "ini adalah isi dari judul pertama",
-        createdAt : Date.now() 
+        createdAt : new Date() 
     },
     {
         title: "judul kedua",
         body: "ini adalah isi dari judul pertama",
-        createdAt: Date.now()
+        createdAt: new Date()
     }]
     res.render('index',{articles: articles});
 });
