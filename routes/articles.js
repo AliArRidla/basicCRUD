@@ -1,8 +1,34 @@
 const express = require('express')
-const router = express.Router();
+const Article = require('./../models/article')
+const router = express.Router()
 
-router.get('/', (req, res) => {
-res.send('In Articles');
-});
+router.get('/new', (req, res) => {
+res.render('articles/new',{article:new Article()});
+}) 
 
+router.get('/:id', async(req, res) => {
+    const article = await Article.findById(req.params.id)
+    if (article == null) res.redirect('/')
+    res.render('articles/show',{article:article})
+    // res.send(req.params.id);
+})
+
+router.post('/', async (req, res) => {
+    let article = new Article({
+        title: req.body.title,
+        description: req.body.description,
+        markdown: req.body.markdown
+    })
+    try {
+    article = await article.save()
+     res.redirect(`/articles/${article.id}`);     
+    }catch(e){
+        console.log(e)
+        res.render('articles/new',{article:article});
+    }
+})
+
+// router.get('/articles/:id', (req, res) => {
+// res.send("hallo");
+// });
 module.exports = router

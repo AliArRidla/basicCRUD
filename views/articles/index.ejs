@@ -9,7 +9,7 @@
 <body>
     <div class = "container">
     <h1 class = "display-1" > Artikel </h1> 
-    <a href = "/articles/baru" class = "btn btn-outline-success"> Tambah </a>
+    <a href = "/articles/new" class = "btn btn-outline-success"> Tambah </a>
     <% articles.forEach(article => { %> 
         <div class="card mt-4">
             <div class="card-body">
@@ -17,7 +17,8 @@
                 <div class="card-subtitle text-muted">
                     <%- article.createdAt.toLocaleDateString() %> 
                 </div>
-                <div class="card-text mb-2"><%- article.body %></div>
+                <div class="card-text mb-2"><%- article.description %></div>
+                <a href="articles/<%= article.id %> " class="btn btn-outline-primary">Read More</a>
             </div>  
         </div>      
     <% }) %> 
