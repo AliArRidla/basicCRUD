@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     },
     {
         title: "judul kedua",
-        body: "ini adalah isi dari judul pertama",
+        body: "ini adalah isi dari judul kedua",
         createdAt: new Date()
     }]
     res.render('index',{articles: articles});
